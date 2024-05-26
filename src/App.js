@@ -7,13 +7,25 @@ function App() {
     email: "",
     dob: "",
     gender: "",
-    prompt1: "",
-    answer1: "",
   });
+
+  const [prompts, setPrompts] = useState([
+    {
+      prompt: "",
+      answer: "",
+      timestamp: new Date().getTime(),
+    },
+  ]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const handlePrompt = (e) => {};
+
+  const handleAddPrompt = (e) => {
+    // e.preventDefault();
   };
 
   console.log(userInfo); //*TESTING
@@ -96,45 +108,51 @@ function App() {
           <legend className="text-2xl font-semibold mb-2 text-gray-500">
             Prompts
           </legend>
-          <div className="flex flex-col gap-2">
-            <label className="text-3xl font-semibold">Select a Prompt</label>
-            <select
-              className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
+          {prompts.map((prompt, idx) => (
+            <div key={prompt.timestamp} className="flex flex-col gap-2">
+              <label className="text-3xl font-semibold">Select a Prompt</label>
+              <select
+                className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
              focus:outline-indigo-500 w-4/5"
-              id="prompt1"
-              name="prompt1"
-              onChange={handleInput}
-            >
-              <option value="Playing Video Games is like.....">
-                Playing Video Games is Like.....
-              </option>
-              <option value="Favorit Weapon in Video Games is...">
-                Favorit Weapon in Video Games is...
-              </option>
-              <option value="Favorit Character From a Video Game is...">
-                Favorit Character From a Video Game is...
-              </option>
-              <option value="Other Games I Enjoy:">Other Games I Enjoy:</option>
-              <option value="Favorit Modes in Video Games:">
-                Favorit Modes in Video Games:
-              </option>
-              <option value="Genres You Enjoy Playing Games:">
-                Genres You Enjoy Playing Games:
-              </option>
-            </select>
-            <textarea
-              className="border border-dashed py-3 px-2 mb-4 focus:outline-indigo-500"
-              id="answer1"
-              name="answer1"
-              rows={5}
-              placeholder="Tell Me Your Games"
-              onChange={handleInput}
-            />
-          </div>
+                id="prompt1"
+                name="prompt1"
+                onChange={(e) => handlePrompt(e, idx)}
+              >
+                <option value="Playing Video Games is like.....">
+                  Playing Video Games is Like.....
+                </option>
+                <option value="Favorit Weapon in Video Games is...">
+                  Favorit Weapon in Video Games is...
+                </option>
+                <option value="Favorit Character From a Video Game is...">
+                  Favorit Character From a Video Game is...
+                </option>
+                <option value="Other Games I Enjoy:">
+                  Other Games I Enjoy:
+                </option>
+                <option value="Favorit Modes in Video Games:">
+                  Favorit Modes in Video Games:
+                </option>
+                <option value="Genres You Enjoy Playing Games:">
+                  Genres You Enjoy Playing Games:
+                </option>
+              </select>
+              <textarea
+                className="border border-dashed py-3 px-2 mb-4 focus:outline-indigo-500"
+                id="answer1"
+                name="answer1"
+                rows={5}
+                placeholder="Tell Me Your Games"
+                onChange={(e) => handlePrompt(e, idx)}
+              />
+            </div>
+          ))}
           <div className="w-full flex justify-center">
             <button
               className="border rounded-md bg-blue-500 py-2 px-3
              text-white font-bold text-xl"
+              type="button"
+              onClick={handleAddPrompt}
             >
               Add Prompt
             </button>
