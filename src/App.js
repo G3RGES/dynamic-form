@@ -7,6 +7,8 @@ function App() {
     email: "",
     dob: "",
     gender: "",
+    prompt1: "",
+    answer1: "",
   });
 
   const handleInput = (e) => {
@@ -19,7 +21,7 @@ function App() {
   return (
     <div className="">
       <h1 className="text-3xl text-center my-4 py-2">React Forms</h1>
-      <form className="w-5/6 max-w-md mx-auto">
+      <form className="w-5/6 max-w-xl mx-auto pt-4 pb-10">
         <fieldset className="flex flex-col gap-2 border py-3 px-4">
           <legend className="text-2xl font-semibold mb-2 text-gray-500">
             About You
@@ -87,6 +89,55 @@ function App() {
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
+          </div>
+        </fieldset>
+
+        <fieldset className="flex flex-col gap-2 border py-3 px-4">
+          <legend className="text-2xl font-semibold mb-2 text-gray-500">
+            Prompts
+          </legend>
+          <div className="flex flex-col gap-2">
+            <label className="text-3xl font-semibold">Select a Prompt</label>
+            <select
+              className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
+             focus:outline-indigo-500 w-4/5"
+              id="prompt1"
+              name="prompt1"
+              onChange={handleInput}
+            >
+              <option value="Playing Video Games is like.....">
+                Playing Video Games is Like.....
+              </option>
+              <option value="Favorit Weapon in Video Games is...">
+                Favorit Weapon in Video Games is...
+              </option>
+              <option value="Favorit Character From a Video Game is...">
+                Favorit Character From a Video Game is...
+              </option>
+              <option value="Other Games I Enjoy:">Other Games I Enjoy:</option>
+              <option value="Favorit Modes in Video Games:">
+                Favorit Modes in Video Games:
+              </option>
+              <option value="Genres You Enjoy Playing Games:">
+                Genres You Enjoy Playing Games:
+              </option>
+            </select>
+            <textarea
+              className="border border-dashed py-3 px-2 mb-4 focus:outline-indigo-500"
+              id="answer1"
+              name="answer1"
+              rows={5}
+              placeholder="Tell Me Your Games"
+              onChange={handleInput}
+            />
+          </div>
+          <div className="">
+            <button
+              className="border rounded-md bg-blue-500 py-2 px-3
+             text-white font-bold text-xl"
+            >
+              Add Prompt
+            </button>
           </div>
         </fieldset>
       </form>
