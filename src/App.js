@@ -22,13 +22,39 @@ function App() {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handlePrompt = (e) => {};
+  const handlePrompt = (e, idx) => {
+    const { name, value } = e.target;
+
+    let newPrompts = [...prompts];
+
+    newPrompts[idx][name] = value;
+
+    setPrompts(newPrompts);
+  };
 
   const handleAddPrompt = (e) => {
-    // e.preventDefault();
+    setPrompts([
+      ...prompts,
+      {
+        prompt: "",
+        answer: "",
+        timestamp: new Date().getTime(),
+      },
+    ]);
+  };
+
+  const handleDeletePrompt = (idx) => {
+    let deletePrompt = [...prompts];
+
+    deletePrompt.splice(idx, 1);
+
+    setPrompts(deletePrompt);
+
+    // setPrompts(prompts.filter((timestamp) => prompt.timestamp !== timestamp));
   };
 
   console.log(userInfo); //*TESTING
+  console.log(prompts); //*TESTING
 
   return (
     <div className="">
@@ -109,15 +135,28 @@ function App() {
             Prompts
           </legend>
           {prompts.map((prompt, idx) => (
-            <div key={prompt.timestamp} className="flex flex-col gap-2">
-              <label className="text-3xl font-semibold">Select a Prompt</label>
+            <div key={prompt.timestamp} className="flex flex-col gap-2 w-full">
+              <div className=" flex flex-row items-center justify-between gap-2">
+                <label className="text-3xl font-semibold">
+                  Select a Prompt
+                </label>
+                <button
+                  className="border rounded-md bg-red-500 py-2.5 px-4
+             text-white font-bold text-xl"
+                  onClick={() => handleDeletePrompt(idx)}
+                  type="button"
+                >
+                  -
+                </button>
+              </div>
               <select
                 className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
              focus:outline-indigo-500 w-4/5"
-                id="prompt1"
-                name="prompt1"
+                id="prompt"
+                name="prompt"
                 onChange={(e) => handlePrompt(e, idx)}
               >
+                <option value="">Select Prompt</option>
                 <option value="Playing Video Games is like.....">
                   Playing Video Games is Like.....
                 </option>
@@ -137,13 +176,14 @@ function App() {
                   Genres You Enjoy Playing Games:
                 </option>
               </select>
+
               <textarea
                 className="border border-dashed py-3 px-2 mb-4 focus:outline-indigo-500"
-                id="answer1"
-                name="answer1"
+                id="answer"
+                name="answer"
                 rows={5}
                 placeholder="Tell Me Your Games"
-                onChange={(e) => handlePrompt(e, idx)}
+                onChange={(timestamp) => handlePrompt(timestamp)}
               />
             </div>
           ))}
