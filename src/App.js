@@ -1,5 +1,20 @@
+import { useState } from "react";
+
 function App() {
-  const handleInput = () => {};
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    dob: "",
+    gender: "",
+  });
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  console.log(userInfo); //*TESTING
 
   return (
     <div className="">
@@ -13,7 +28,7 @@ function App() {
             <label className="text-3xl font-semibold">What's Your Name</label>
             <input
               className="border rounded text-lg leading-tight py-3 px-2 mt-4
-             focus:outline-indigo-500 w-3/5"
+             focus:outline-indigo-500 w-4/5"
               id="firstName"
               name="firstName"
               placeholder="First Name"
@@ -23,7 +38,7 @@ function App() {
 
             <input
               className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
-             focus:outline-indigo-500 w-3/5"
+             focus:outline-indigo-500 w-4/5"
               id="lastName"
               name="lastName"
               placeholder="Last Name"
@@ -35,7 +50,7 @@ function App() {
             <label className="text-3xl font-semibold">What's Your Email?</label>
             <input
               className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
-             focus:outline-indigo-500 w-3/5"
+             focus:outline-indigo-500 w-4/5"
               type="email"
               id="email"
               name="email"
@@ -49,7 +64,7 @@ function App() {
             </label>
             <input
               className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
-             focus:outline-indigo-500 w-3/5"
+             focus:outline-indigo-500 w-4/5"
               type="date"
               id="dob"
               name="dob"
@@ -62,7 +77,7 @@ function App() {
             <label className="text-3xl font-semibold">What's Your Gender</label>
             <select
               className="border rounded text-lg leading-tight py-3 px-2 mb-3 mt-4
-             focus:outline-indigo-500 w-3/5"
+             focus:outline-indigo-500 w-4/5"
               name="gender"
               id="gender"
               placeholder=""
