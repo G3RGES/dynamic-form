@@ -131,7 +131,7 @@ function App() {
               onChange={handleInput}
             />
           </div>
-          <div className="">
+          <div className="w-full flex justify-center">
             <button
               className="border rounded-md bg-blue-500 py-2 px-3
              text-white font-bold text-xl"
