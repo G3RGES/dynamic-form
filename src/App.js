@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div className="App">
-      <h1 className="bg-red-500">Hello</h1>
+    <div className="">
+      <h1 className="text-3xl text-center my-2 py-2">React Forms</h1>
     </div>
   );
 }
